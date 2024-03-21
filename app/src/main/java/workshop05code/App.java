@@ -29,7 +29,7 @@ public class App {
 
     private static final Logger logger = Logger.getLogger(App.class.getName());
     // End code for logging exercise
-    
+
     /**
      * @param args the command line arguments
      */
@@ -74,15 +74,20 @@ public class App {
             String guess = scanner.nextLine();
 
             while (!guess.equals("q")) {
-                System.out.println("You've guessed '" + guess+"'.");
+                if (guess.length() > 4 || guess.length() < 4 || !guess.matches("[a-z]+")) {
+                    System.out.println("UNACCEPPTAABBLLLEE.\n");
+                    return;
+                }
 
-                if (wordleDatabaseConnection.isValidWord(guess)) { 
+                System.out.println("You've guessed '" + guess + "'.");
+
+                if (wordleDatabaseConnection.isValidWord(guess)) {
                     System.out.println("Success! It is in the the list.\n");
-                }else{
+                } else {
                     System.out.println("Sorry. This word is NOT in the the list.\n");
                 }
 
-                System.out.print("Enter a 4 letter word for a guess or q to quit: " );
+                System.out.print("Enter a 4 letter word for a guess or q to quit: ");
                 guess = scanner.nextLine();
             }
         } catch (NoSuchElementException | IllegalStateException e) {
