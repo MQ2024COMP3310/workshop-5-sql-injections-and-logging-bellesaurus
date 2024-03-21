@@ -132,6 +132,8 @@ public class SQLiteConnectionManager {
 
         try (Connection conn = DriverManager.getConnection(databaseURL);
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.setString(2, word);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
