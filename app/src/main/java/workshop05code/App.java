@@ -56,6 +56,11 @@ public class App {
             String line;
             int i = 1;
             while ((line = br.readLine()) != null) {
+                if (line.length() != 4 || !line.matches("[a-z]+")) {
+                    System.out.println("UNACCEPPTAABBLLLEE\n");
+                    logger.log(Level.SEVERE, line, "UNACCEPTABLE");
+                    return;
+                }
                 System.out.println(line);
                 wordleDatabaseConnection.addValidWord(i, line);
                 i++;
@@ -74,8 +79,9 @@ public class App {
             String guess = scanner.nextLine();
 
             while (!guess.equals("q")) {
-                if (guess.length() > 4 || guess.length() < 4 || !guess.matches("[a-z]+")) {
+                if (guess.length() != 4 || !guess.matches("[a-z]+")) {
                     System.out.println("UNACCEPPTAABBLLLEE.\n");
+                    logger.log(Level.SEVERE, guess, "UNACCEPTABLE");
                     return;
                 }
 
