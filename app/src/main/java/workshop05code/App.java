@@ -57,18 +57,19 @@ public class App {
             int i = 1;
             while ((line = br.readLine()) != null) {
                 if (line.length() != 4 || !line.matches("[a-z]+")) {
-                    System.out.println("UNACCEPPTAABBLLLEE\n");
-                    logger.log(Level.SEVERE, line, "UNACCEPTABLE");
+                    logger.log(Level.WARNING,
+                            "This is not a 4 letter word. It has not been added to the database.\n");
                     return;
                 }
-                System.out.println(line);
+                // System.out.println(line);
                 wordleDatabaseConnection.addValidWord(i, line);
                 i++;
             }
 
         } catch (IOException e) {
-            System.out.println("Not able to load . Sorry!");
-            System.out.println(e.getMessage());
+            System.out.println("Not able to load. Sorry!");
+            // System.out.println(e.getMessage());
+            logger.log(Level.SEVERE, e.getMessage());
             return;
         }
 
@@ -80,8 +81,8 @@ public class App {
 
             while (!guess.equals("q")) {
                 if (guess.length() != 4 || !guess.matches("[a-z]+")) {
-                    System.out.println("UNACCEPPTAABBLLLEE.\n");
-                    logger.log(Level.SEVERE, guess, "UNACCEPTABLE");
+                    System.out.println("This is not a 4 letter word. Goodbye!\n");
+                    logger.log(Level.INFO, "This is not a 4 letter word: {0}", guess);
                     return;
                 }
 

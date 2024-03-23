@@ -70,7 +70,7 @@ public class SQLiteConnectionManager {
 
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            logger.log(Level.WARNING, e.getMessage());
         }
     }
 
@@ -89,7 +89,7 @@ public class SQLiteConnectionManager {
                     return true;
                 }
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                logger.log(Level.WARNING, e.getMessage());
                 return false;
             }
         }
@@ -114,7 +114,8 @@ public class SQLiteConnectionManager {
                 return true;
 
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                // System.out.println(e.getMessage());
+                logger.log(Level.WARNING, e.getMessage());
                 return false;
             }
         }
@@ -136,7 +137,7 @@ public class SQLiteConnectionManager {
             pstmt.setString(2, word);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.SEVERE, e.getMessage());
+            logger.log(Level.INFO, "Valid word: {0}", word);
         }
 
     }
@@ -163,7 +164,8 @@ public class SQLiteConnectionManager {
             return false;
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
+            logger.log(Level.WARNING, "Invalid word.");
             return false;
         }
 
